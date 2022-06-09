@@ -23,7 +23,7 @@ export default function Home({ data }) {
   );
 }
 
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
   const response = await fetch("https://pserver.netlify.app/product")
     .then((res) => res.json())
     .then((data) => data);
