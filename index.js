@@ -9,6 +9,10 @@ const handle = app.getRequestHandler();
 app.prepare().then(() => {
   const server = express();
 
+  server.get("/api/health", (req, res) => {
+    res.status(200).send("OK");
+  });
+
   server.all("*", (req, res) => {
     return handle(req, res);
   });
