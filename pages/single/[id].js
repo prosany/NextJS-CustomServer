@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 
 const User = ({ user }) => {
   return (
@@ -6,8 +7,14 @@ const User = ({ user }) => {
       <div className="col-md-6 offset-md-3">
         <div className="card">
           <div className="card-body text-center">
-            <h3>{user.name}</h3>
-            <p>Email: {user.email} </p>
+            Name: {user.name}
+            <br />
+            Email: {user.email}
+            <br />
+            Phone: {user.phone}
+            <br />
+            <small>Address: {user.address.city}</small> <br />
+            <Link href="/single">Go Back</Link>
           </div>
         </div>
       </div>

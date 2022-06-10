@@ -7,8 +7,10 @@ body {
 }
 
 a {
-  color: inherit;
+  color: blue;
   text-decoration: none;
+  font-weight: bold;
+  margin: 0 10px;
 }
 
 * {
