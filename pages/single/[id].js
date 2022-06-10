@@ -1,35 +1,38 @@
-import { useRouter } from "next/router";
-import Link from "next/link";
+import React from "react";
 
-export default function Home({ data }) {
-  const router = useRouter();
-  const { id, type } = router.query;
-
+const User = ({ user }) => {
   return (
-    <>
-      <h1>
-        Your ID is {id} - and Type is {type}
-      </h1>
-      {/* <small>{JSON.stringify(router)}</small> */}
-      <main>
-        {data.map((item) => (
-          <div key={item._id}>
-            {item.name} - {item.price}
+    <div className="row">
+      <div className="col-md-6 offset-md-3">
+        <div className="card">
+          <div className="card-body text-center">
+            <h3>{user.name}</h3>
+            <p>Email: {user.email} </p>
           </div>
-        ))}
-      </main>
-      <Link href="/">Home</Link>
-    </>
+        </div>
+      </div>
+    </div>
   );
+};
+
+export async function getStaticPaths() {
+  const res = await fetch("https://jsonplaceholder.typicode.com/users");
+  const users = await res.json();
+
+  const paths = users.map((user) => ({
+    params: { id: user.id.toString() },
+  }));
+
+  return { paths, fallback: false };
 }
 
-export const getServerSideProps = async () => {
-  const response = await fetch("https://pserver.netlify.app/product")
-    .then((res) => res.json())
-    .then((data) => data);
-  return {
-    props: {
-      data: response || [],
-    },
-  };
-};
+export async function getStaticProps({ params }) {
+  const res = await fetch(
+    `https://jsonplaceholder.typicode.com/users/${params.id}`
+  );
+  const user = await res.json();
+
+  return { props: { user } };
+}
+
+export default User;
