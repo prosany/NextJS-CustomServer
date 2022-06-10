@@ -5,7 +5,7 @@ export default function Home() {
     <>
       <h1>Next.js is Running with Custom Express</h1>
       <Link href="/product/98?type=OK">Product Details</Link>
-      <Link href="/single/98?type=OK">Cached Product Details</Link>
+      <Link href="/single/2">Cached Product Details</Link>
     </>
   );
 }
