@@ -8,6 +8,7 @@ Router.events.on("routeChangeComplete", nProgress.done);
 Router.events.on("routeChangeError", nProgress.done);
 
 function MyApp({ Component, pageProps }) {
+  console.log(Router.events);
   return <Component {...pageProps} />;
 }
 
